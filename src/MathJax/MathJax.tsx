@@ -104,10 +104,7 @@ const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
                             throw Error(
                                 "Render mode 'pre' requires 'typesettingOptions' prop with 'fn' property to be set on MathJax element or in the MathJaxContext"
                             )
-                        if(mjPromise.version === 2)
-                            throw Error(
-                                "Render mode 'pre' only available with MathJax 3, and version 2 is currently in use"
-                            )
+
                     }
                     if(usedRenderMode === "post" || text !== lastChildren.current) {
                         if(!typesetting.current) {
@@ -132,7 +129,7 @@ const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
                                                         })
                                                     )
                                                     .then(updateFn)
-                                                    .catch((err) => {
+                                                    .catch((err : any) => {
                                                         onTypesetDone()
                                                         throw Error(typesettingFailed(err))
                                                     })
@@ -145,7 +142,7 @@ const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
                                                         })
                                                         updateFn(output)
                                                     })
-                                                    .catch((err) => {
+                                                    .catch((err : any) => {
                                                         onTypesetDone()
                                                         throw Error(typesettingFailed(err))
                                                     })
@@ -157,7 +154,7 @@ const MathJax: FC<MathJaxProps & ComponentPropsWithoutRef<"span">> = ({
                                                     return mathJax.typesetPromise([ref.current])
                                                 })
                                                 .then(onTypesetDone)
-                                                .catch((err) => {
+                                                .catch((err : any) => {
                                                     onTypesetDone()
                                                     throw Error(typesettingFailed(err))
                                                 })
